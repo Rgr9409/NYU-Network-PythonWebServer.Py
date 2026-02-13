@@ -22,7 +22,7 @@ def webServer(port=13331):
             
             f = open(filename[1:], 'r') 
             
-            header = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nServer: NYU-Python-Server\r\n\r\n"
+            header = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: close\r\nServer: NYU-Python-Server\r\n\r\n"
             
             content = ""
             for i in f:
@@ -33,7 +33,7 @@ def webServer(port=13331):
             connectionSocket.close()
   #Fill in end
         except Exception as e:
-            error_response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nServer: NYU-Python-Server\r\n\r\n<html><body><h1>404 Not Found</h1></body></html>"
+            error_response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: close\r\n\r\n<html><body><h1>404 Not Found</h1></body></html>"
             connectionSocket.send(error_response.encode())
             connectionSocket.close()
 
